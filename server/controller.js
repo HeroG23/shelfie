@@ -1,5 +1,5 @@
 module.exports = {
-    createProduct: (req, res, next) =>{
+    addProduct: (req, res, next) =>{
         const db = req.app.get('db');
         const {product_name, price, img_url} = req.body;
 
@@ -25,7 +25,7 @@ module.exports = {
     findProducts: (req, res) => {
         const db = req.app.get('db');
 
-        db.find_products()
+        db.get_inventory()
         .then(products => res.status(200).send(products))
         .catch(err => {
             res.status(500).send(`There's a troll in the dungeon`)
