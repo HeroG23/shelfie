@@ -30,14 +30,15 @@ class Form extends Component {
 
     addProduct(){
         const {product_name, price, img_url} = this.state;
+        const {inventory} = this.props
         const newProduct = {
             product_name,
             price,
             img_url
         }
-        const newInventory = [...this.props.inventory, newProduct]
+        const newInventory = [...inventory, newProduct]
         this.setState({
-            [this.props.inventory]: newInventory
+            [inventory]: newInventory
         })
     }
     render() {
