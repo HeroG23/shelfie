@@ -1,18 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
 import Form from "./Components/Form/Form";
 import Dashboard from './Components/Dashboard/Dashboard';
 import Header from './Components/Header/Header';
+export class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      inventory: []
+    }
+  }
 
-function App() {
-  return (
-    <div className="App">
-      this is the App.js component
+  componentDidMount(){
+    axios.get('http://')
+  }
+  render() {
+    return (
+      <div>
+         this is the App.js component
       <Header/>
       <Dashboard/>
-      <Form/>      
-    </div>
-  );
+      <Form/>    
+      </div>
+    )
+  }
 }
 
 export default App;
