@@ -1,4 +1,3 @@
-import e from 'express';
 import React, { Component } from 'react'
 
 class Form extends Component {
@@ -18,12 +17,12 @@ class Form extends Component {
            product_name: e.target.value
        }) 
     }
-    priceChange = e => {
+    priceChange = (e) => {
         this.setState({
             price: e.target.value
         })
     }
-    imageChange(){
+    imageChange(e){
         this.setState({
             img_url: e.target.value
         })
@@ -31,7 +30,6 @@ class Form extends Component {
 
     addProduct(){
         const {product_name, price, img_url} = this.state;
-        e.preventDefault();
         const newProduct = {
             product_name,
             price,
@@ -44,6 +42,7 @@ class Form extends Component {
     }
     render() {
         const {product_name, price, img_url, } = this.state
+        const {inventory} = this.props
         return (
             <form className="form" onSubmit={this.addProduct}>
                 <input
@@ -61,8 +60,10 @@ class Form extends Component {
                     onChange={e => this.imageChange(e)}
                     type="text"
                 />
-                <button type="submit">Add Product</button>
-                <button>cancel</button>
+                <button className="add-product" type="submit">Add Product</button>
+                <button className="cancel" onClick={() => {
+                    this.setState({product_name: inventory.product_name, price: inventory.price, img_url: inventory.img_url})
+                }}>cancel</button>
             </form>
         )
     }
