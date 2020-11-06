@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from "axios"
 import Form from "./Components/Form/Form";
 import Dashboard from './Components/Dashboard/Dashboard';
 import Header from './Components/Header/Header';
@@ -21,7 +22,7 @@ export class App extends Component {
       <div>
          this is the App.js component
       <Header/>
-      <Dashboard inventory={inventory}/>
+      <Dashboard />
       <Form/>    
       </div>
     )

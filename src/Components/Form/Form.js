@@ -5,55 +5,64 @@ class Form extends Component {
     constructor(props){
         super(props);
         this.state = {
-            name: "",
+            product_name: "",
             price: 0,
             img_url: ""
         }
         this.addProduct = this.addProduct.bind(this)
+        this.imageChange = this.imageChange.bind(this)
     }
 
-    handleChange = (e) => {
+    nameChange = (e) => {
        this.setState({
-           [e.target.name]: e.target.value
+           product_name: e.target.value
        }) 
+    }
+    priceChange = e => {
+        this.setState({
+            price: e.target.value
+        })
+    }
+    imageChange(){
+        this.setState({
+            img_url: e.target.value
+        })
     }
 
     addProduct(){
-        const {name, price, img_url} = this.state;
+        const {product_name, price, img_url} = this.state;
         e.preventDefault();
         const newProduct = {
             product_name,
             price,
             img_url
         }
-        const newInventory = [...inventory, newProduct]
+        const newInventory = [...this.props.inventory, newProduct]
         this.setState({
-            inventory: newInventory
+            [this.props.inventory]: newInventory
         })
     }
     render() {
+        const {product_name, price, img_url, } = this.state
         return (
             <form className="form" onSubmit={this.addProduct}>
                 <input
-                    name="name"
-                    placeholder="Name"
-                    onChange={e => this.handleChange(e)}
+                    value={product_name}
+                    onChange={e => this.nameChange(e)}
                     type="text"
                 />
                 <input
-                    name="price"
-                    placeholder="Price"
-                    onChange={e => this.handleChange(e)}
+                   value={price}
+                    onChange={e => this.priceChange(e)}
                     type="text"
                 />
                 <input
-                    name="img_url"
-                    placeholder="Img_url"
-                    onChange={e => this.handleChange(e)}
+                    value={img_url}
+                    onChange={e => this.imageChange(e)}
                     type="text"
                 />
                 <button type="submit">Add Product</button>
-                <button onClick={e=>e.stopPropagation()}>cancel</button>
+                <button>cancel</button>
             </form>
         )
     }
