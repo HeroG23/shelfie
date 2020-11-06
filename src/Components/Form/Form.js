@@ -1,10 +1,10 @@
+import e from 'express';
 import React, { Component } from 'react'
 
 class Form extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
-            inventory: inventory,
             name: "",
             price: 0,
             img_url: ""
@@ -20,8 +20,9 @@ class Form extends Component {
 
     addProduct(){
         const {name, price, img_url} = this.state;
+        e.preventDefault();
         const newProduct = {
-            name,
+            product_name,
             price,
             img_url
         }
@@ -37,19 +38,22 @@ class Form extends Component {
                     name="name"
                     placeholder="Name"
                     onChange={e => this.handleChange(e)}
+                    type="text"
                 />
                 <input
                     name="price"
                     placeholder="Price"
                     onChange={e => this.handleChange(e)}
+                    type="text"
                 />
                 <input
                     name="img_url"
                     placeholder="Img_url"
                     onChange={e => this.handleChange(e)}
+                    type="text"
                 />
                 <button type="submit">Add Product</button>
-                <button type="cancel">cancel</button>
+                <button onClick={e=>e.stopPropagation()}>cancel</button>
             </form>
         )
     }

@@ -11,14 +11,17 @@ export class App extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://')
+    axios.get('/api/products')
+    .then(res => {this.setState({inventory: res.data});
+  }).catch(err => console.log(err));
   }
+
   render() {
     return (
       <div>
          this is the App.js component
       <Header/>
-      <Dashboard/>
+      <Dashboard inventory={inventory}/>
       <Form/>    
       </div>
     )

@@ -1,5 +1,5 @@
 INSERT INTO products (
-    name,
+    product_name,
     price,
     img_url
 )

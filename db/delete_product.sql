@@ -1,2 +1,2 @@
-DELETE FROM product
-WHERE name = $1
+DELETE FROM products
+WHERE product_name = $1

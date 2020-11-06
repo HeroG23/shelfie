@@ -1,17 +1,17 @@
 module.export = {
-    createProduct: (req, res) =>{
+    createProduct: (req, res, next) =>{
         const db = req.app.get('db');
-        const {name, price, img_url} = req.body;
+        const {product_name, price, img_url} = req.body;
 
-        db.create_product([name, price, img_url])
+        db.create_product([product_name, price, img_url])
         .then (() => res.sendStatus(200))
         .catch(err => {
-            res.status(500).send(`You can't do that`)
+            res.status(500).send(`You can't sit here`)
             console.log(err)
         });
     },
 
-    findProduct: (req, res) => {
+    findProduct: (req, res, next) => {
         const db = req.app.get('db');
         const {id} = req.params;
 
