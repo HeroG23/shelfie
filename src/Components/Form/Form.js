@@ -5,15 +5,23 @@ class Form extends Component {
     constructor(props){
         super(props);
         this.state = {
-            id: null,
             product_name: "",
             price: 0,
-            img_url: ""
+            img_url: "",
+            edit: false
         }
         this.addProduct = this.addProduct.bind(this)
         this.imageChange = this.imageChange.bind(this)
     }
-
+    componentDidMount() {
+        let { id } = this.props.match.params;
+        if (id) {
+          axios.get(`/api/product/${id}`)
+            .then(res => {
+              this.setState({ ...res.data, edit: true })
+            })
+        }
+      }
     nameChange = (text) => {
         if (text.length <= 40) {
             this.setState({ name: text })
