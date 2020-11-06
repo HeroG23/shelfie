@@ -1,4 +1,4 @@
-module.export = {
+module.exports = {
     createProduct: (req, res, next) =>{
         const db = req.app.get('db');
         const {product_name, price, img_url} = req.body;
